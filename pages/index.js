@@ -1,12 +1,49 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const sections = [
-    { id: 1, name: "Smoothie 1" },
-    { id: 2, name: "Smoothie 2" },
-    { id: 3, name: "Smoothie 3" },
-    { id: 4, name: "Smoothie 4" },
-    { id: 5, name: "Smoothie 5" },
+    {
+      id: 1,
+      name: "Peanut Punch",
+      tagLine: "It's So Good",
+      attributes: "Iron - Agave",
+      description:
+        "Creamy blend of peanuts, bananas, and a touch of sweetness, creating a rich and satisfying punch.",
+    },
+    {
+      id: 2,
+      name: "Strango",
+      tagLine: "Strawed Up The Mango",
+      attributes: "Vitamin C - High Fiber",
+      description:
+        "Exotic fusion of strawberries and mangoes, delivering a tantalizingly sweet and tangy flavor explosion.",
+    },
+    {
+      id: 3,
+      name: "Strawnanza",
+      tagLine: "Banana Strawberry Yum",
+      attributes: "Potassium - Vitamin B6",
+      description:
+        "A delightful frenzy of strawberry and banana, culminating in a burst of fruity goodness.",
+    },
+    {
+      id: 4,
+      name: "Tapple",
+      tagLine: "Tap That Apple",
+      attributes: "Apple - Agave",
+      description:
+        "Creamy blend of peanuts, bananas, and a touch of sweetness, creating a rich and satisfying punch.",
+    },
+    {
+      id: 5,
+      name: "Pineberry",
+      tagLine: "Sweet Pinapple Goodness",
+      attributes: "Vitamain - Agave",
+      description:
+        "A delightful blend of juicy pineapples and succulent strawberries, creating a sweet and tangy sensation.",
+    },
   ];
 
   const [activeSection, setActiveSection] = useState(0);
@@ -46,8 +83,20 @@ export default function Home() {
   return (
     <div
       className="h-screen w-screen bg-no-repeat bg-cover bg-center overflow-x-hidden relative"
-      style={{ backgroundImage: "url(/bar.jpg)" }}
+      style={{ backgroundImage: "url(/bar2.png)" }}
     >
+      <div className="header-container flex flex-row justify-between">
+        <div className="z-40 pl-[100px] pt-[50px] text-4xl">
+          <h2>SOKES SWIG</h2>
+        </div>
+        <div className="pt-[60px] pr-[150px] text-xl">
+          <a href="mailto:123@gmail.com">Contact</a>
+        </div>
+      </div>
+      <div className="z-40 pt-[700px] pl-[1500px] text-xl">
+        <Image src="" alt="" />
+        <h2>Sound</h2>
+      </div>
       <div
         className="absolute top-0 h-full w-full flex transition-all transform duration-2000 ease-in-out"
         style={{
@@ -58,9 +107,18 @@ export default function Home() {
         {sections.map((section, index) => (
           <div
             key={index}
-            className="h-screen w-screen flex items-center justify-center text-6xl text-black bg-transparent"
+            className="h-screen w-screen flex items-center justify-center text-6xl text-white bg-transparent"
           >
-            {section.name}
+            <div className="flavor-main-container h-[60%] w-[80%] flex">
+              <div className="w-[700px] flex-col text-3xl">
+                <div>{section.tagLine}</div>
+                <div className="w-[500px] text-6xl">{section.name}</div>
+                {section.attributes}
+              </div>
+              <div className="description-div w-[1520px] pl-[400px] pt-[400px] flex-wrap text-3xl">
+                {section.description}
+              </div>
+            </div>
           </div>
         ))}
       </div>
