@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import ThreeScene from "../components/ThreeScene";
 
 export default function Home() {
   const sections = [
@@ -80,6 +80,8 @@ export default function Home() {
     };
   }, [activeSection]);
 
+  // ... previous code
+
   return (
     <div
       className="h-screen w-screen bg-no-repeat bg-cover bg-center overflow-x-hidden relative"
@@ -96,6 +98,9 @@ export default function Home() {
       <div className="z-40 pt-[700px] pl-[1500px] text-xl">
         <Image src="" alt="" />
         <h2>Sound</h2>
+      </div>
+      <div className="absolute z-10 top-0 right-0 bottom-0 left-0">
+        <ThreeScene />
       </div>
       <div
         className="absolute top-0 h-full w-full flex transition-all transform duration-2000 ease-in-out"
