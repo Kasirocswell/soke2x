@@ -7,12 +7,8 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        main: ["Original Surfer", "cursive"],
-        details: ["East Sea Dokdo", "cursive"],
-        second: ["Shadows Into Light", "cursive"],
-      },
+      fontFamily: {},
     },
+    plugins: [],
   },
-  plugins: [],
 };

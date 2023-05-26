@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import LoopingSound from "../components/LoopingSound";
 import ThreeScene from "../components/ThreeScene";
+import { pen, sun, pop } from "../fonts/fonts";
 
 export default function Home() {
   const sections = [
@@ -46,6 +48,17 @@ export default function Home() {
     },
   ];
 
+  const handleSound = () => {
+    // const audio = document.getElementsByClassName("audio");
+    // const mute = () => {
+    //   if (audio.hasAttribute("muted")) {
+    //     audio.removeAttribute("muted");
+    //   } else {
+    //     audio.setAttribute("muted");
+    //   }
+    // };
+  };
+
   const [activeSection, setActiveSection] = useState(0);
   const [scrollTime, setScrollTime] = useState(Date.now());
 
@@ -80,7 +93,7 @@ export default function Home() {
     };
   }, [activeSection]);
 
-  // ... previous code
+  //
 
   return (
     <div
@@ -89,15 +102,19 @@ export default function Home() {
     >
       <div className="header-container flex flex-row justify-between">
         <div className="z-40 pl-[100px] pt-[50px] text-4xl">
-          <h2>SOKES SWIG</h2>
+          <h2 className={`${pop.className}`}>SOKES SWIG</h2>
         </div>
-        <div className="pt-[60px] pr-[150px] text-xl">
-          <a href="mailto:123@gmail.com">Contact</a>
+        <div className="pt-[60px] pr-[150px] text-3xl">
+          <a href="mailto:123@gmail.com" className={`${pen.className}`}>
+            Contact
+          </a>
         </div>
       </div>
-      <div className="z-40 pt-[700px] pl-[1500px] text-xl">
-        <Image src="" alt="" />
-        <h2>Sound</h2>
+      <div className="z-40 pt-[700px] pl-[1500px] text-3xl">
+        <LoopingSound src="/waves.mp3" />
+        <h2 onClick={handleSound} className={`${pen.className}`}>
+          Sound
+        </h2>
       </div>
       <div className="absolute z-10 top-0 right-0 bottom-0 left-0">
         <ThreeScene />
@@ -116,11 +133,15 @@ export default function Home() {
           >
             <div className="flavor-main-container h-[60%] w-[80%] flex">
               <div className="w-[700px] flex-col text-3xl">
-                <div>{section.tagLine}</div>
-                <div className="w-[500px] text-6xl">{section.name}</div>
-                {section.attributes}
+                <div className={`${sun.className}`}>{section.tagLine}</div>
+                <div className={`w-[500px] ${pen.className} text-6xl`}>
+                  {section.name}
+                </div>
+                <div className={`${sun.className}`}>{section.attributes}</div>
               </div>
-              <div className="description-div w-[1520px] pl-[400px] pt-[400px] flex-wrap text-3xl">
+              <div
+                className={`description-div w-[1520px] pl-[400px] pt-[400px] flex-wrap ${sun.className} text-3xl`}
+              >
                 {section.description}
               </div>
             </div>
