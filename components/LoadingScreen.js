@@ -6,6 +6,7 @@ import BeachBallSVG from "./BeachBall";
 import DolphinSVG from "./Dolphin";
 import SharkSVG from "./Shark";
 import ProgressBar from "./ProgressBar";
+import { pen, sun } from "../fonts/fonts";
 
 const LoadingScreen = () => {
   const [loading, setLoading] = useState(true);
@@ -20,7 +21,9 @@ const LoadingScreen = () => {
       <div className="z-20 relative mx-auto">
         <Image src={logo} alt="Logo" className="w-250 h-250" />
         <div className=" ml-[100px] flex-col animate-pulse">
-          <p className="mt-4 text-6xl text-black font-second">Loading...</p>
+          <p className={`mt-4 text-6xl text-black ${pen.className}`}>
+            Loading...
+          </p>
           <ProgressBar />
         </div>
       </div>

@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 import Router from "next/router";
 import NextNProgress from "nextjs-progressbar";
 import LoadingScreen from "../components/LoadingScreen";
+import {
+  Nanum_Pen_Script,
+  Waiting_for_the_Sunrise,
+  Mochiy_Pop_One,
+} from "@next/font/google";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
