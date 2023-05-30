@@ -115,14 +115,14 @@ export default function Home() {
         container="div-sound"
         className="pt-[700px] pl-[1500px] z-40 text-3xl"
       >
-        <div onMouseOver={handleSound} className="w-[80px] h-[40px] z-40">
+        <div className="w-[80px] h-[40px] z-40">
           <button
-            onMouseOver={handleSound}
+            onClick={handleSound}
             className="w-[40px] h-[40px] ml-[20px] z-50"
           >
             Sound
           </button>
-          <AudioEqualizer onMouseOver={handleSound} muted={isMuted} />
+          <AudioEqualizer muted={isMuted} />
         </div>
       </div>
       <div className="absolute z-10 top-0 right-0 bottom-0 left-0">

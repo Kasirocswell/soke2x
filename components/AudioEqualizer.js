@@ -8,12 +8,20 @@ export default function AudioEqualizer({ muted, paused }) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const p5 = require("p5");
-      const sound = new Howl({
-        src: ["/waves.mp3"],
-        format: ["mp3"],
-      });
-
-      setAudio(sound);
+      if (audio == null || undefined) {
+        const sound = new Howl({
+          src: ["/waves.mp3"],
+          format: ["mp3"],
+          loop: true,
+        });
+        setAudio(sound);
+      } else if (muted) {
+        audio.stop();
+        console.log("sound stopped");
+      } else if (!muted) {
+        audio.play();
+        console.log("sound playing");
+      }
 
       let analyser = Howler.ctx.createAnalyser();
       Howler.masterGain.connect(analyser);
@@ -65,14 +73,6 @@ export default function AudioEqualizer({ muted, paused }) {
           return sum / arr.length;
         }
       }, canvasRef.current);
-
-      if (muted) {
-        sound.stop();
-        console.log("sound stopped");
-      }
-      if (!muted) {
-        sound.play();
-      }
     }
 
     // Cleanup function to remove sketch on unmount
@@ -81,7 +81,7 @@ export default function AudioEqualizer({ muted, paused }) {
         canvasRef.current.innerHTML = "";
       }
     };
-  }, [muted]);
+  }, [muted, paused]);
 
   return (
     <div
