@@ -3,6 +3,8 @@ import Image from "next/image";
 import LoopingSound from "../components/LoopingSound";
 import ThreeScene from "../components/ThreeScene";
 import { pen, sun, pop } from "../fonts/fonts";
+import Link from "next/link";
+import AudioEqualizer from "../components/AudioEqualizer";
 
 export default function Home() {
   const sections = [
@@ -48,17 +50,6 @@ export default function Home() {
     },
   ];
 
-  const handleSound = () => {
-    // const audio = document.getElementsByClassName("audio");
-    // const mute = () => {
-    //   if (audio.hasAttribute("muted")) {
-    //     audio.removeAttribute("muted");
-    //   } else {
-    //     audio.setAttribute("muted");
-    //   }
-    // };
-  };
-
   const [activeSection, setActiveSection] = useState(0);
   const [scrollTime, setScrollTime] = useState(Date.now());
 
@@ -93,28 +84,46 @@ export default function Home() {
     };
   }, [activeSection]);
 
+  const [isMuted, setMuted] = useState(false);
+
+  const handleSound = () => {
+    setMuted(!isMuted);
+    console.log("clicked");
+  };
+
   //
 
   return (
     <div
-      className="h-screen w-screen bg-no-repeat bg-cover bg-center overflow-x-hidden relative"
+      className="h-screen w-screen bg-no-repeat bg-cover bg-center overflow-hidden relative"
       style={{ backgroundImage: "url(/bar2.png)" }}
     >
       <div className="header-container flex flex-row justify-between">
         <div className="z-40 pl-[100px] pt-[50px] text-4xl">
+          <button onClick={handleSound} className="w-[70px] h-[40px] bg-black">
+            test
+          </button>
           <h2 className={`${pop.className}`}>SOKES SWIG</h2>
         </div>
-        <div className="pt-[60px] pr-[150px] text-3xl">
-          <a href="mailto:123@gmail.com" className={`${pen.className}`}>
+        <div className="pt-[60px] pr-[150px] z-30 text-3xl">
+          <Link href="mailto:123@gmail.com" className={`${pen.className}`}>
             Contact
-          </a>
+          </Link>
         </div>
       </div>
-      <div className="z-40 pt-[700px] pl-[1500px] text-3xl">
-        <LoopingSound src="/waves.mp3" />
-        <h2 onClick={handleSound} className={`${pen.className}`}>
-          Sound
-        </h2>
+      <div
+        container="div-sound"
+        className="pt-[700px] pl-[1500px] z-40 text-3xl"
+      >
+        <div onMouseOver={handleSound} className="w-[80px] h-[40px] z-40">
+          <button
+            onMouseOver={handleSound}
+            className="w-[40px] h-[40px] ml-[20px] z-50"
+          >
+            Sound
+          </button>
+          <AudioEqualizer onMouseOver={handleSound} muted={isMuted} />
+        </div>
       </div>
       <div className="absolute z-10 top-0 right-0 bottom-0 left-0">
         <ThreeScene />
