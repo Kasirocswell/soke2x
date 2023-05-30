@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@next/font": "^13.4.4",
+    "gsap": "^3.11.5",
+    "howler": "^2.2.3",
     "next": "13.4.3",
     "nextjs-progressbar": "^0.0.16",
+    "p5": "^1.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-three-fiber": "^6.0.13",
