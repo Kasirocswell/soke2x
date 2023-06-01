@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import Image from "next/image";
-import LoopingSound from "../components/LoopingSound";
 import ThreeScene from "../components/ThreeScene";
 import { pen, sun, pop } from "../fonts/fonts";
 import Link from "next/link";
@@ -99,14 +97,23 @@ export default function Home() {
       style={{ backgroundImage: "url(/bar2.png)" }}
     >
       <div className="header-container flex flex-row justify-between">
-        <div className="z-40 pl-[100px] pt-[50px] text-4xl">
-          <button onClick={handleSound} className="w-[70px] h-[40px] bg-black">
-            test
-          </button>
+        <div className="z-40 pl-[100px] pt-[50px] overflow-x-hidden text-4xl">
           <h2 className={`${pop.className}`}>SOKES SWIG</h2>
         </div>
-        <div className="pt-[60px] pr-[150px] z-30 text-3xl">
-          <Link href="mailto:123@gmail.com" className={`${pen.className}`}>
+        <div className="pt-[60px] pr-[150px] flex z-30 text-3xl">
+          <div className="w-[80px] h-[40px] pr-[150px] z-40">
+            <button
+              onClick={handleSound}
+              className={`w-[90px] h-[40px] ml-[20px] ${pen.className}`}
+            >
+              Sound
+            </button>
+            <AudioEqualizer muted={isMuted} />
+          </div>
+          <Link
+            href="mailto:springerisoke@gmail.com"
+            className={`${pen.className}`}
+          >
             Contact
           </Link>
         </div>
@@ -114,17 +121,7 @@ export default function Home() {
       <div
         container="div-sound"
         className="pt-[700px] pl-[1500px] z-40 text-3xl"
-      >
-        <div className="w-[80px] h-[40px] z-40">
-          <button
-            onClick={handleSound}
-            className="w-[40px] h-[40px] ml-[20px] z-50"
-          >
-            Sound
-          </button>
-          <AudioEqualizer muted={isMuted} />
-        </div>
-      </div>
+      ></div>
       <div className="absolute z-10 top-0 right-0 bottom-0 left-0">
         <ThreeScene />
       </div>

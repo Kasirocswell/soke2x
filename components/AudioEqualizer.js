@@ -86,7 +86,7 @@ export default function AudioEqualizer({ muted, paused }) {
   return (
     <div
       ref={canvasRef}
-      className="w-25 h-50 mr-[400px] mt-[-55px] scale-x-[-1]"
+      className="w-25 h-50 mr-[400px] mt-[-65px] scale-x-[-1]"
     ></div>
   );
 }
