@@ -86,33 +86,34 @@ export default function Home() {
 
   const handleSound = () => {
     setMuted(!isMuted);
-    console.log("clicked");
   };
 
   //
 
   return (
     <div
-      className="h-screen w-screen bg-no-repeat bg-cover bg-center overflow-hidden relative"
+      className="h-screen w-screen bg-no-repeat bg-cover bg-center overflow-hidden 2xl:h-screen 2xl:w-screen 2xl:bg-no-repeat 2xl:bg-cover 2xl:bg-center 2xl:overflow-hidden relative"
       style={{ backgroundImage: "url(/bar2.png)" }}
     >
-      <div className="header-container flex flex-row justify-between">
-        <div className="z-40 pl-[100px] pt-[50px] overflow-x-hidden text-4xl">
-          <h2 className={`${pop.className}`}>SOKES SWIG</h2>
+      <div className="header-container flex flex-row justify-between 2xl:header-container 2xl:flex 2xl:flex-row 2xl:justify-between">
+        <div className="z-40 pl-[25px] pt-[20px] overflow-x-hidden text-[15px] 2xl:z-40 2xl:pl-[100px] 2xl:pt-[50px] 2xl:overflow-x-hidden">
+          <h2 className={`2xl:text-4xl ${pop.className}`}>SOKES SWIG</h2>
         </div>
-        <div className="pt-[60px] pr-[150px] flex z-30 text-3xl">
-          <div className="w-[80px] h-[40px] pr-[150px] z-40">
+        <div className="pt-[20px] mr-[20px] flex z-30 2xl:pt-[60px] 2xl:pr-[100px] 2xl:flex 2xl:z-30 2xl:text-3xl">
+          <div className="w-[80px] h-[40px] pr-[150px] z-40 2xl:w-[80px] 2xl:h-[40px] 2xl:pr-[160px] 2xl:z-40">
             <button
               onClick={handleSound}
-              className={`w-[90px] h-[40px] ml-[20px] ${pen.className}`}
+              className={`w-[90px] h-[40px] pl-[90px] text-[25px] 2xl:w-[90px] 2xl:-[40px] 2xl:ml-[80px] 2xl:text-[45px] ${pen.className}`}
             >
               Sound
             </button>
-            <AudioEqualizer muted={isMuted} />
+            <div className="w-[90px] h-[40px] pl-[80px] 2xl:pl-[160px]">
+              <AudioEqualizer muted={isMuted} />
+            </div>
           </div>
           <Link
             href="mailto:springerisoke@gmail.com"
-            className={`${pen.className}`}
+            className={`text-[25px] 2xl:text-[45px] 2xl:ml-[130px] ${pen.className}`}
           >
             Contact
           </Link>
@@ -122,7 +123,7 @@ export default function Home() {
         container="div-sound"
         className="pt-[700px] pl-[1500px] z-40 text-3xl"
       ></div>
-      <div className="absolute z-10 top-0 right-0 bottom-0 left-0">
+      <div className="absolute z-20 top-0 right-0 bottom-0 left-0">
         <ThreeScene />
       </div>
       <div
@@ -135,18 +136,28 @@ export default function Home() {
         {sections.map((section, index) => (
           <div
             key={index}
-            className="h-screen w-screen flex items-center justify-center text-6xl text-white bg-transparent"
+            className="h-screen w-screen flex items-center justify-center text-6xl pb-[260px] text-white bg-transparent"
           >
-            <div className="flavor-main-container h-[60%] w-[80%] flex">
-              <div className="w-[700px] flex-col text-3xl">
-                <div className={`${sun.className}`}>{section.tagLine}</div>
-                <div className={`w-[500px] ${pen.className} text-6xl`}>
+            <div className="flavor-main-container h-[60%] w-[100%] flex">
+              <div className="w-screen flex flex-col text-3xl 2xl:pl-[250px] 2xl:pt-[70px]">
+                <div
+                  className={`pl-[20px] text-lg 2xl:text-3xl 2xl:pb-[16px] ${sun.className}`}
+                >
+                  {section.tagLine}
+                </div>
+                <div
+                  className={`w-[230px] pl-[20px] ${pen.className} text-4xl 2xl:w-[400px] 2xl:text-[80px] 2xl:z-10`}
+                >
                   {section.name}
                 </div>
-                <div className={`${sun.className}`}>{section.attributes}</div>
+                <div
+                  className={`text-lg pl-[20px] 2xl:text-3xl 2xl:pt-[20px] ${sun.className}`}
+                >
+                  {section.attributes}
+                </div>
               </div>
               <div
-                className={`description-div w-[1520px] pl-[400px] pt-[400px] flex-wrap ${sun.className} text-3xl`}
+                className={`w-screen pt-[410px] pr-[10px] flex flex-wrap 2xl:w-[740px] 2xl:mr-[150px] 2xl:pt-[450px] 2xl:flex-wrap 2xl:flex-row 2xl:text-3xl text-lg ${sun.className}`}
               >
                 {section.description}
               </div>
