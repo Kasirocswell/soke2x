@@ -42,7 +42,7 @@ const ThreeScene = () => {
 
 const HomePage = () => {
   return (
-    <div className="h-screen w-screen bg-transparent flex justify-center items-center mt-[225px] z-0">
+    <div className="h-screen w-screen bg-transparent flex justify-center items-center mt-[115px] 2xl:mt-[210px] z-0">
       <Canvas>
         <ThreeScene />
       </Canvas>
