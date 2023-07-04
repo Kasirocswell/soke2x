@@ -157,7 +157,7 @@ export default function Home() {
                 </div>
               </div>
               <div
-                className={`w-screen pt-[410px] pr-[10px] flex flex-wrap 2xl:w-[740px] 2xl:mr-[150px] 2xl:pt-[450px] 2xl:flex-wrap 2xl:flex-row 2xl:text-3xl text-lg ${sun.className}`}
+                className={`w-screen pt-[430px] pr-[10px] flex flex-wrap 2xl:w-[740px] 2xl:mr-[150px] 2xl:pt-[450px] 2xl:flex-wrap 2xl:flex-row 2xl:text-3xl text-lg ${sun.className}`}
               >
                 {section.description}
               </div>
