@@ -3,10 +3,10 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const modelPaths = [
-  "static/juice02.glb",
-  "static/juice03.glb",
-  "static/juice04.glb",
-  "static/juice05.glb",
+  "/static/juice02.glb",
+  "/static/juice03.glb",
+  "/static/juice04.glb",
+  "/static/juice05.glb",
 ];
 
 const ThreeScene = () => {
