@@ -50,6 +50,15 @@ export default function Home() {
 
   const [activeSection, setActiveSection] = useState(0);
   const [scrollTime, setScrollTime] = useState(Date.now());
+  const [isMuted, setMuted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    flavor: "",
+    size: "",
+  });
 
   const goPrev = () =>
     setActiveSection(
@@ -62,10 +71,8 @@ export default function Home() {
 
   const onWheel = (e) => {
     e.preventDefault();
-    // Debounce scroll event
     if (Date.now() - scrollTime > 500) {
-      // Only allow scroll event to trigger if 500ms has passed since last scroll
-      setScrollTime(Date.now()); // Update last scroll time
+      setScrollTime(Date.now());
       if (e.deltaY < 0 || e.deltaX < 0) {
         goPrev();
       } else if (e.deltaY > 0 || e.deltaX > 0) {
@@ -76,19 +83,48 @@ export default function Home() {
 
   useEffect(() => {
     window.addEventListener("wheel", onWheel, { passive: false });
-
     return () => {
       window.removeEventListener("wheel", onWheel);
     };
   }, [activeSection]);
 
-  const [isMuted, setMuted] = useState(false);
-
   const handleSound = () => {
     setMuted(!isMuted);
   };
 
-  //
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Email sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          phoneNumber: "",
+          flavor: "",
+          size: "",
+        });
+        setShowModal(false);
+      } else {
+        console.error("Failed to send email");
+      }
+    } catch (error) {
+      console.error("There was an error sending the email", error);
+    }
+  };
 
   return (
     <div
@@ -111,12 +147,12 @@ export default function Home() {
               <AudioEqualizer muted={isMuted} />
             </div>
           </div>
-          <Link
-            href="mailto:springerisoke@gmail.com"
+          <button
+            onClick={() => setShowModal(true)}
             className={`text-[25px] 2xl:text-[45px] 2xl:ml-[130px] ${pen.className}`}
           >
-            Contact
-          </Link>
+            Order
+          </button>
         </div>
       </div>
       <div
@@ -165,6 +201,102 @@ export default function Home() {
           </div>
         ))}
       </div>
+
+      {/* Order Modal */}
+      {showModal && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded shadow-lg">
+            <h2 className="text-2xl mb-4 text-black">Order Form</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block mb-2">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border rounded"
+                  placeholder="Full Name"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border rounded"
+                  placeholder="Email"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border rounded"
+                  placeholder="Phone Number"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block mb-2">Flavor</label>
+                <select
+                  name="flavor"
+                  value={formData.flavor}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-2 border rounded"
+                >
+                  <option value="">Select a flavor</option>
+                  <option value="Peanut Punch">Peanut Punch</option>
+                  <option value="Strango">Strango</option>
+                  <option value="Soursop">Soursop</option>
+                  <option value="Strawberry Lemonade">
+                    Strawberry Lemonade
+                  </option>
+                  <option value="Limeade">Limeade</option>
+                  <option value="Flavor of the Day">Flavor of the Day</option>
+                </select>
+              </div>
+              <div className="mb-4 text-black">
+                <label className="block mb-2">Size</label>
+                <label className="block">
+                  <input
+                    type="radio"
+                    name="size"
+                    value="16fl oz"
+                    onChange={handleInputChange}
+                    required
+                  />{" "}
+                  16fl oz
+                </label>
+                <label className="block">
+                  <input
+                    type="radio"
+                    name="size"
+                    value="gallon"
+                    onChange={handleInputChange}
+                    required
+                  />{" "}
+                  Gallon
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="bg-blue-500 text-white p-2 rounded"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
