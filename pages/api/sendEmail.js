@@ -1,15 +1,16 @@
 import sgMail from "@sendgrid/mail";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env.production" });
 
 export default async (req, res) => {
   if (req.method === "POST") {
-    sgMail.setApiKey(
-      "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"
-    );
+    console.log(process.env.SENDGRID_API_KEY);
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     const { name, email, phoneNumber, flavor, size } = req.body;
 
     const msg = {
-      to: "springerisoke@gmail.com",
+      to: "kasirocswell@rocketmail.com",
       from: "orders@celestial-deep.com",
       subject: "New Juice Order",
       text: `
