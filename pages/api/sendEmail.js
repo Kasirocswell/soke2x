@@ -4,13 +4,12 @@ dotenv.config({ path: ".env.production" });
 
 export default async (req, res) => {
   if (req.method === "POST") {
-    console.log(process.env.SENDGRID_API_KEY);
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     const { name, email, phoneNumber, flavor, size } = req.body;
 
     const msg = {
-      to: "kasirocswell@rocketmail.com",
+      to: "springerisoke@gmail.com",
       from: "orders@celestial-deep.com",
       subject: "New Juice Order",
       text: `
