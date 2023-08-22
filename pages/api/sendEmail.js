@@ -3,13 +3,13 @@ import sgMail from "@sendgrid/mail";
 export default async (req, res) => {
   if (req.method === "POST") {
     sgMail.setApiKey(
-      "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"
+      "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"
     );
 
     const { name, email, phoneNumber, flavor, size } = req.body;
 
     const msg = {
-      to: "Sokesswig@gmail.com",
+      to: "springerisoke@gmail.com",
       from: "orders@celestial-deep.com",
       subject: "New Juice Order",
       text: `
