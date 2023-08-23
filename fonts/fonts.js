@@ -2,7 +2,7 @@ import {
   Mochiy_Pop_One,
   Nanum_Pen_Script,
   Waiting_for_the_Sunrise,
-} from "@next/font/google";
+} from "next/font/google";
 
 export const pen = Nanum_Pen_Script({
   subsets: ["latin"],
